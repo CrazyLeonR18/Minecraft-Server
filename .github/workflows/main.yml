@@ -1,0 +1,15 @@
+name: Windows Server Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Starte PowerShell
+        run: |
+          echo "Starte Windows Server Umgebung"
+          systeminfo
+          echo "RAM Check:"
+          wmic computersystem get totalphysicalmemory
