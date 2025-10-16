@@ -7,9 +7,9 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: Starte PowerShell
+      - name: RAM Check
         run: |
-          echo "Starte Windows Server Umgebung"
-          systeminfo
-          echo "RAM Check:"
-          wmic computersystem get totalphysicalmemory
+          $ramBytes = (Get-CimInstance -ClassName Win32_ComputerSystem).TotalPhysicalMemory
+          $ramGB = [math]::Round($ramBytes / 10GB, 2)
+          Write-Host "Total RAM: $ramGB GB"
+        shell: pwsh
